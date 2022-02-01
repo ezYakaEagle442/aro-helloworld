@@ -103,6 +103,21 @@ tkn pipeline start build-and-deploy \
     -p git-revision=main \
     -p IMAGE=image-registry.openshift-image-registry.svc:5000/$projectname/hello-aro
 
+#  get the route of the application by executing the following command and access the application
+oc get route pipelines-hello-aro --template='http://{{.spec.host}}'
+
+# https://docs.openshift.com/container-platform/4.9/registry/accessing-the-registry.html
+oc logs deployments/image-registry -n openshift-image-registry | grep -i "hello"
+
+# k8sNode = $(oc get nodes -o json | jq  -Mr '.items[3].metadata.labels["kubernetes.io/hostname"]')
+k8sNode=$(oc get nodes -o json | jq  -Mr '.items[3].status.addresses[1].address')
+oc debug nodes/$k8sNode
+chroot /host
+oc login -u kubeadmin -p $aro_pwd https://api.<base_domain>
+# example: oc login -u kubeadmin -p $aro_pwd https://api.gbbappinno.northeurope.aroapp.io:6443
+
+podman login -u kubeadmin -p $(oc whoami -t) image-registry.openshift-image-registry.svc:5000
+
 # Lets start a pipeline to build and deploy backend application using tkn:
 tkn pipeline start build-and-deploy \
     -w name=shared-workspace,volumeClaimTemplateFile=https://raw.githubusercontent.com/openshift/pipelines-tutorial/master/01_pipeline/03_persistent_volume_claim.yaml \
@@ -127,7 +142,7 @@ tkn pipeline logs -f
 tkn pipeline start build-and-deploy --last
 
 #  get the route of the application by executing the following command and access the application
-oc get route vote-ui --template='http://{{.spec.host}}'
+oc get route pipelines-vote-ui --template='http://{{.spec.host}}'
 
 ```
 
