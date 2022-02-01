@@ -16,7 +16,7 @@ spec:
         app: pipelines-hello-aro
     spec:
       containers:
-        - image: hello-aro:latest
+        - image: image-registry.openshift-image-registry.svc:5000/pipelines-tutorial/hello-aro:latest
           imagePullPolicy: Always
           name: pipelines-hello-aro
           ports:
