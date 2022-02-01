@@ -1,5 +1,6 @@
 ## How to install Tekton CLI
-[https://github.com/tektoncd/cli](https://github.com/tektoncd/cli)
+- [https://github.com/tektoncd/cli](https://github.com/tektoncd/cli)
+- [https://docs.openshift.com/container-platform/4.9/cli_reference/tkn_cli/installing-tkn.html](https://docs.openshift.com/container-platform/4.9/cli_reference/tkn_cli/installing-tkn.html)
 
 ### From Chocolatey
 ```sh
@@ -26,6 +27,40 @@ brew install tektoncd-cli
 
 source <(tkn completion bash)
 complete -F __start_tkn tkn
+
+## Install odo
+See [OpenShift doc](https://docs.openshift.com/container-platform/4.9/cli_reference/developer_cli_odo/installing-odo.html)
+```sh
+curl -L https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/odo/latest/odo-linux-amd64 -o odo
+curl -L https://developers.redhat.com/content-gateway/rest/mirror/pub/openshift-v4/clients/odo/latest/odo-linux-amd64.tar.gz -o odo.tar.gz
+tar xvzf odo.tar.gz
+chmod +x odo
+echo 'export PATH="$PATH:~/odo"' >> ~/.bashrc
+odo version
+```
+## Install Podman
+See [Podman doc](https://podman.io/getting-started/installation)
+https://podman.io/getting-started/installation
+
+[https://www.how2shout.com/linux/how-to-install-podman-on-ubuntu-20-04-wsl2/](https://www.how2shout.com/linux/how-to-install-podman-on-ubuntu-20-04-wsl2/)
+
+```sh
+VERSION_ID="20.04"
+. /etc/os-release
+echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+curl -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key" | sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt search podman
+sudo apt-get -y install podman
+podman --help
+podman info
+podman search --help
+man podman-<subcommand>
+podman images
+podman ps
+podman logs -l
+```
 
 ## VIM tips
 
