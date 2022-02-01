@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: pipelines-hello-aro
+  name: pipelines-hello-aro
+spec:
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: pipelines-hello-aro
+    weight: 100

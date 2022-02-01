@@ -1,0 +1,26 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pipelines-hello-aro
+  name: pipelines-hello-aro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pipelines-hello-aro
+  template:
+    metadata:
+      labels:
+        app: pipelines-hello-aro
+    spec:
+      containers:
+        - image: hello-aro:latest
+          imagePullPolicy: Always
+          name: pipelines-hello-aro
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 9090
+              protocol: TCP
