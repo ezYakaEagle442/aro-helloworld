@@ -1,3 +1,7 @@
+prv/*
+deploy/*
+cnf/*
+
 # Logs
 logs
 *.log
