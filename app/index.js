@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 
 console.log(new Date() + ' process.env.OPENSHIFT_NODEJS_IP ' + process.env.OPENSHIFT_NODEJS_IP);
 console.log(new Date() + ' process.env.OPENSHIFT_NODEJS_PORT ' + process.env.OPENSHIFT_NODEJS_PORT);
-console.log(new Date() + ' process.env.process.env.PORT ' + process.env.process.env.PORT);
+console.log(new Date() + ' process.env.process.PORT ' + process.env.process.PORT);
 
 // Not to bind to 0.0.0.0 and get error OpenShift Node JS Error: listen EACCES: permission denied 0.0.0.0:80
 // https://stackoverflow.com/questions/20974094/openshift-node-js-error-listen-eacces
