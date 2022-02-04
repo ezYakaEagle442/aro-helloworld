@@ -34,5 +34,9 @@ spec:
           env:
             - name: "OPENSHIFT_NODEJS_IP"
               value: "127.0.0.1"
+            - name: "OPENSHIFT_NODEJS_HOST"
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name    
             - name: "OPENSHIFT_NODEJS_PORT"
               value: "8080"
