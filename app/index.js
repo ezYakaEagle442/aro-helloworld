@@ -9,7 +9,9 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html')
 });
 
-
+// https://cloud.redhat.com/blog/run-your-nodejs-projects-on-openshift-in-two-simple-steps
+// https://www.openshift.com/developers/node-js
+// https://developers.redhat.com/articles/2022/01/13/get-started-nodejs-16-openshift#deploy_the_node_js_16_container_image_on_openshift
 console.log(new Date() + ' process.env.OPENSHIFT_NODEJS_IP ' + process.env.OPENSHIFT_NODEJS_IP);
 console.log(new Date() + ' process.env.OPENSHIFT_NODEJS_PORT ' + process.env.OPENSHIFT_NODEJS_PORT);
 console.log(new Date() + ' process.env.PORT ' + process.env.PORT);
@@ -20,6 +22,6 @@ var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 var listener = app.listen(process.env.PORT || 8080, ipaddress,  function() {
- console.log(new Date() + ' Server is listening on port ' + listener.address().port);
+ console.log(new Date() + ' Server is listening on ipaddress' + listener.address().ipaddress + ' and port ' + listener.address().port);
 });
 
