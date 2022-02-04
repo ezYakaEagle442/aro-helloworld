@@ -19,8 +19,20 @@ spec:
         - image: image-registry.openshift-image-registry.svc:5000/pipelines-tutorial/hello-aro:latest
           imagePullPolicy: Always
           name: pipelines-hello-aro
+          resources:
+            limits:
+              memory: "100Mi"
+              cpu: "1"
+            requests:
+              memory: "50Mi"
+              cpu: "0.25"
           ports:
             - containerPort: 8080
               protocol: TCP
             - containerPort: 9090
               protocol: TCP
+          env:
+            - name: "OPENSHIFT_NODEJS_IP"
+              value: "127.0.0.1"
+            - name: "OPENSHIFT_NODEJS_PORT"
+              value: "8080"
